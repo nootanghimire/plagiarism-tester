@@ -9,6 +9,28 @@ import sys
 import difflib
 from pyPdf import PdfFileReader
 
+verbose = False
+
+if(len(sys.argv)>3):
+  if(sys.argv[1] == "-v"):
+    verbose = True
+    file1 = sys.argv[2]
+    file2 = sys.argv[3]
+  else:
+    print "[X] Please supply Proper Arguments"
+    print"\n\nUsage: main.py file1 file2\n\nExample: main.py \"my document.pdf\" next_document.pdf"
+    print"\nOr:  main.py -v file1 file2\n\nExample: main.py -v \"my document.pdf\" next_document.pdf"
+    exit()
+elif(len(sys.argv)>2):
+  file1 = sys.argv[1]
+  file2 = sys.argv[2]
+else:
+  print "[X] Please supply Proper Arguments"
+  print "\n\nUsage: main.py file1 file2\n\nExample: main.py \"my document.pdf\" next_document.pdf"
+  print "\nOr: main.py -v file1 file2\n\nExample: main.py -v \"my document.pdf\" next_document.pdf"
+  exit()
+
+'''
 try:
   file1 = sys.argv[1]
   file2 = sys.argv[2]
@@ -16,13 +38,14 @@ except:
   print"[X] Couldn't get proper arguments!"
   print"\n\nUsage: main.py file1 file2\n\nExample: main.py \"my document.pdf\" next_document.pdf"
   exit()
-
+'''
 
 try:
   input1 = PdfFileReader(file(file1, "rb"))
   input2 = PdfFileReader(file(file2, "rb"))
 except:
-  print "[X] Couldn't open pdf file! Is that readable? Or is it really a PDF file?"
+  if(verbose):
+    print "[X] Couldn't open pdf file! Is that readable? Or is it really a PDF file? Or do you have pyPDF?"
   exit()
 
 #find the larger file
@@ -43,7 +66,8 @@ def compareTexts():
     text2 = input2.getPage(page).extractText()
     seq = difflib.SequenceMatcher(None, text1, text2)
     d = seq.ratio()
-    print "[*] For Page ", page, "Match: ", d
+    if(verbose):
+      print "[*] For Page ", page, "Match: ", d
     add = add + d
     count = count + 1 
   return add/count
