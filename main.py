@@ -1,4 +1,10 @@
 #!/usr/bin/python
+
+'''
+  @author Nootan Ghimire <nootan.ghimire@gmail.com>
+  @license Mozilla Public License
+'''
+
 import sys
 import difflib
 from pyPdf import PdfFileReader
