@@ -13,7 +13,7 @@ try:
   file1 = sys.argv[1]
   file2 = sys.argv[2]
 except:
-  print"[!] Couldn't get proper arguments!"
+  print"[X] Couldn't get proper arguments!"
   print"\n\nUsage: main.py file1 file2\n\nExample: main.py \"my document.pdf\" next_document.pdf"
   exit()
 
@@ -22,7 +22,7 @@ try:
   input1 = PdfFileReader(file(file1, "rb"))
   input2 = PdfFileReader(file(file2, "rb"))
 except:
-  print "[!] Couldn't open pdf file! Is that readable? Or is it really a PDF file?"
+  print "[X] Couldn't open pdf file! Is that readable? Or is it really a PDF file?"
   exit()
 
 #find the larger file
@@ -43,11 +43,18 @@ def compareTexts():
     text2 = input2.getPage(page).extractText()
     seq = difflib.SequenceMatcher(None, text1, text2)
     d = seq.ratio()
-    print "[-] For Page ", page, "Match: ", d
+    print "[*] For Page ", page, "Match: ", d
     add = add + d
     count = count + 1 
   return add/count
 
 average = compareTexts()
-print "\n\n[-]Average Match: ", average
+print "\n\n[*] Average Match: ", average
 
+if(compareNumPages() == True):
+  print "[*] Both files have same number of pages: ", input1.getNumPages()
+else:
+  print "[*] File \"", file1, ": ", input1.getNumPages(), " pages"
+  print "[*] File \"", file2, ": ", input2.getNumPages(), " pages"
+
+   
