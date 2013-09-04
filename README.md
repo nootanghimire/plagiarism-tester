@@ -1,4 +1,4 @@
-Plgiarism Tester
+Plagiarism Tester
 ==========
 
 Tests similarity between two pdf files, Built using difflib and pyPDF
