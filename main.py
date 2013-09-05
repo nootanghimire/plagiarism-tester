@@ -92,3 +92,21 @@ else:
   print "[*] File \"", file2, "\": ", input2.getNumPages(), " pages"
 print "[*] Maximum matched page(s): ", returnDict['max_match_page']
 print "    Matched value: ", returnDict['max_match']
+
+#analysis
+print "\nAnalysis\n------------"
+if(returnDict['average'] == 1.0):
+  if(compareNumPages()):
+    print "Everything matched! This happens when the supplied material are exaclty identical, or you supplied same pdf, or there is  chance that both pdf contains un-renderable texts!"
+  else:
+    print "Everything matched! But not the page numbers. There is a high chance that the PDF contains un-readable texts, or empty pages! Or a person could have copied the pdf and added/removed extra pages, to show that the document is not identical!"
+elif(returnDict['average'] >= 0.5):
+  if(compareNumPages()):
+    print "There is a high chance that one of the document was copied and modified, The number of pages also match!"
+  else:
+    print "Records show that the person modified the original document, and added/removed pages to hide themselves"
+elif(returnDict['average'] == 0):
+  print "Nothing matched! This is wierd! Anything matches! This must be due to the fact that one of the pdf has un-renderable texts!"
+else:
+  print "There is extremely less chance that the thing was ever copied! Now be happy! :) "
+
