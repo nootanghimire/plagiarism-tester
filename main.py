@@ -61,13 +61,18 @@ def compareNumPages():
 def compareTexts():
   add = 0
   count = 0
-  for page in range(1,input2.getNumPages()):
+  max_match_in_page = 0
+  max_match_value = 0
+  for page in range(0,input2.getNumPages()):
     text1 = input1.getPage(page).extractText()
     text2 = input2.getPage(page).extractText()
     seq = difflib.SequenceMatcher(None, text1, text2)
     d = seq.ratio()
     if(verbose):
-      print "[*] For Page ", page, "Match: ", d
+      print "[*] For Page ", page + 1 , "Match: ", d
+    if(max_match_value < d):
+      max_match_value = d
+      max_match_in_page = page
     add = add + d
     count = count + 1 
   return add/count
