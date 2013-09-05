@@ -81,12 +81,14 @@ def compareTexts():
   return {'average':(add/count), 'max_match':max_match_value, 'max_match_page':max_match_in_page}
 
 returnDict  = compareTexts()
-print "\n\n[*] Average Match: ", returnDict['average']
+if(verbose):
+  print "\n"
+print "[*] Average Match: ", returnDict['average']
 
 if(compareNumPages() == True):
   print "[*] Both files have same number of pages: ", input1.getNumPages()
 else:
-  print "[*] File \"", file1, ": ", input1.getNumPages(), " pages"
-  print "[*] File \"", file2, ": ", input2.getNumPages(), " pages"
-print "[*] Max matched page(s): ", returnDict['max_match_page']
+  print "[*] File \"", file1, "\": ", input1.getNumPages(), " pages"
+  print "[*] File \"", file2, "\": ", input2.getNumPages(), " pages"
+print "[*] Maximum matched page(s): ", returnDict['max_match_page']
 print "    Matched value: ", returnDict['max_match']
