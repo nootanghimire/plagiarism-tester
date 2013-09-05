@@ -61,7 +61,7 @@ def compareNumPages():
 def compareTexts():
   add = 0
   count = 0
-  max_match_in_page = 0
+  max_match_in_page = [] 
   max_match_value = 0
   for page in range(0,input2.getNumPages()):
     text1 = input1.getPage(page).extractText()
@@ -72,18 +72,21 @@ def compareTexts():
       print "[*] For Page ", page + 1 , "Match: ", d
     if(max_match_value < d):
       max_match_value = d
-      max_match_in_page = page
+      max_match_in_page = None
+      max_match_in_page = [page + 1] #because page is 0-indexed!
+    elif(max_match_value == d):
+      max_match_in_page.append(page+1)
     add = add + d
     count = count + 1 
-  return add/count
+  return {'average':(add/count), 'max_match':max_match_value, 'max_match_page':max_match_in_page}
 
-average = compareTexts()
-print "\n\n[*] Average Match: ", average
+returnDict  = compareTexts()
+print "\n\n[*] Average Match: ", returnDict['average']
 
 if(compareNumPages() == True):
   print "[*] Both files have same number of pages: ", input1.getNumPages()
 else:
   print "[*] File \"", file1, ": ", input1.getNumPages(), " pages"
   print "[*] File \"", file2, ": ", input2.getNumPages(), " pages"
-
-   
+print "[*] Max matched page(s): ", returnDict['max_match_page']
+print "    Matched value: ", returnDict['max_match']
