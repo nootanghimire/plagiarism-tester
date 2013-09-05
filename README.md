@@ -27,6 +27,13 @@ Example:
 
 
 ```bash
-main.py "file1.pdf" "file2.pdf"
+./main.py "file1.pdf" "file2.pdf"
+
+```
+
+Or,
+
+```bash
+./main.py -v "file1.pdf" "file2.pdf"
 
 ```
