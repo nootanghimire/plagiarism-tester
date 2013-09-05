@@ -3,7 +3,11 @@ Plagiarism Tester
 
 Tests similarity between two pdf files, Built using `difflib`  and `pyPDF`
 
-Currenlty available for python 2.7 ( Will you please port to 3.3 ;) )
+Currenlty available for python 2.7!
+
+
+ Will you please port to 3.3 ;) ? Please use the py3 branch and edit the
+main\_py3.py file!
 
 Download pyPDF at http://pybrary.net/pyPdf/
 
