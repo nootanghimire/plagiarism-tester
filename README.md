@@ -37,3 +37,8 @@ Or,
 ./main.py -v "file1.pdf" "file2.pdf"
 
 ```
+
+
+#LICENSE
+
+Mozilla Public License
